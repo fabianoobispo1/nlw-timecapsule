@@ -76,6 +76,3 @@ NLW Space time é uma aplicação de Cápsula de tempo, com objetivo de registra
 
 <br>
 
-## Configurando ambientes
-
-<br>
