@@ -9,7 +9,7 @@ import { ArrowRight } from 'lucide-react'
 
 dayjs.locale(ptBr)
 
-interface Memory {
+interface MemoryProps {
   coverUrl: string
   excerpt: string
   id: string
@@ -29,7 +29,7 @@ export default async function Home() {
     },
   })
 
-  const memories: Memory[] = response.data
+  const memories: MemoryProps[] = response.data
 
   if (memories.length === 0) {
     return <EmptyMemories />

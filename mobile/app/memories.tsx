@@ -23,7 +23,7 @@ export default function Memories() {
   const { bottom, top } = useSafeAreaInsets()
 
   async function singOut() {
-    await SecureStore.deleteItemAsync('token')
+    // await SecureStore.deleteItemAsync('token')
     router.push('/')
   }
   async function loadMemories() {

@@ -3,11 +3,29 @@ import axios from 'axios'
 import { z } from 'zod'
 import { prisma } from '../lib/prisma'
 
+interface RegisterTypeProps {
+  type?: 'web' | 'mobile'
+}
+
 export async function authRoutes(app: FastifyInstance) {
   app.post('/register', async (request) => {
+    const { type } = request.headers as RegisterTypeProps
+
+    console.log(type)
     const bodySchema = z.object({
       code: z.string(),
     })
+
+    const GITHUB_CLIENT_ID =
+      type === 'mobile'
+        ? process.env.GITHUB_MOBILE_CLIENT_ID
+        : process.env.GITHUB_WEB_CLIENT_ID
+
+    const GITHUB_CLIENT_SECRET =
+      type === 'mobile'
+        ? process.env.GITHUB_MOBILE_CLIENT_SECRET
+        : process.env.GITHUB_WEB_CLIENT_SECRET
+
     const { code } = bodySchema.parse(request.body)
 
     const accessTokenResponse = await axios.post(
@@ -15,8 +33,8 @@ export async function authRoutes(app: FastifyInstance) {
       null,
       {
         params: {
-          client_id: process.env.GITHUB_CLIENT_ID,
-          client_secret: process.env.GITHUB_CLIENT_SECRET,
+          client_id: GITHUB_CLIENT_ID,
+          client_secret: GITHUB_CLIENT_SECRET,
           code,
         },
         headers: {
