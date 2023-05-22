@@ -1,6 +1,6 @@
 <h1 align="center">
   <img
-    src=".github/images/nlw-spacetime-logo.svg"
+    src=".github/assets/nlw-spacetime-logo.svg"
     alt="NLW Spacetime Logo"
     title="NLW Spacetime"
     width="660px"
